@@ -1,0 +1,20 @@
+---
+
+- name: Download and install nodejs apt public signing key
+  apt_key: url="{{ nodejs_signing_key_url }}" state=present
+
+- name: Add nodejs apt repository definition to apt sources list
+  template:
+    src:   nodesource.list.j2
+    dest:  /etc/apt/sources.list.d/nodesource.list
+    owner: root
+    group: root
+    mode:  0644
+  register: repo
+
+- name: Update nodejs apt repos
+  apt: update_cache=yes
+  when: repo|changed
+
+- name: Install nodejs
+  apt: name=nodejs update_cache=yes state=present
