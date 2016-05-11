@@ -17,4 +17,7 @@
   when: repo|changed
 
 - name: Install nodejs
-  apt: name=nodejs update_cache=yes state=present
+  apt: name=nodejs state=present
+
+- name: Install nodejs build tools
+  apt: name=build-essential state=present
