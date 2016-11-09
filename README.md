@@ -1,7 +1,7 @@
 Nodejs
 =============
 
-This role installs nodejs (v4.x and above).
+This role installs nodejs (v6.x and above).
 
 
 ## Example
@@ -10,7 +10,7 @@ This role installs nodejs (v4.x and above).
 - hosts: myhost
 
   vars:
-    nodejs_version: 6.x
+    nodejs_major_version: 6
 
   roles:
     - wunzeco.nodejs
