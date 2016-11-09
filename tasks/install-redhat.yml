@@ -1,0 +1,25 @@
+---
+
+- name: Copy nodesource gpg signing key
+  copy:
+    src:   NODESOURCE-GPG-SIGNING-KEY-EL
+    dest:  /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
+    owner: root
+    group: root
+    mode:  0644
+
+- name: Create nodesource yum repo config
+  template:
+    src:   nodesource.yum.repo.j2
+    dest:  /etc/yum.repos.d/nodesource-el.repo
+    owner: root
+    group: root
+    mode:  0644
+  
+- name: Install nodejs
+  yum: name=nodejs state=present
+  
+- name: Install build tools for nodejs native addons
+  yum: name={{ item }} state=present
+  with_items: [ 'gcc-c++', 'make' ]
+  when: nodejs_build_tools_install
