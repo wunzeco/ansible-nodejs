@@ -9,3 +9,6 @@ nodejs_yum_repo_baseurl: "https://rpm.nodesource.com/pub_{{ nodejs_major_version
 nodejs_yum_repo_source_baseurl: "https://rpm.nodesource.com/pub_{{ nodejs_major_version }}.x/el/7/SRPMS"
 
 nodejs_build_tools_install: true
+
+nodejs_yarn_install: true
+nodejs_yarn_version: '*'

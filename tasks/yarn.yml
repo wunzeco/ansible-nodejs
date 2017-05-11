@@ -1,0 +1,36 @@
+---
+
+# Debian
+- name: Download and install yarn apt public signing key | Debian
+  shell:
+      apt-key list | grep yarn || \
+        wget -qO- https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  when: ansible_os_family|lower == 'debian'
+
+- name: Add yarn apt repository definition to apt sources list | Debian
+  apt_repository:
+    repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+    update_cache: yes
+    state: present
+  when: ansible_os_family|lower == 'debian'
+
+- name: Install yarn | Debian
+  apt:
+    name:  "yarn={{ nodejs_yarn_version|default('*') }}"
+    state: present
+  when: ansible_os_family|lower == 'debian'
+
+
+# RedHat
+- name: Add yarn yum repository definition | RedHat
+  get_url:
+    url:  "https://dl.yarnpkg.com/rpm/yarn.repo"
+    dest: /etc/yum.repos.d/yarn.repo
+  when: ansible_os_family|lower == 'redhat'
+
+- name: Install yarn | RedHat
+  yum:
+    name:  "yarn-{{ nodejs_yarn_version|default('*') }}"
+    update_cache: yes
+    state: present
+  when: ansible_os_family|lower == 'redhat'

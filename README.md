@@ -1,7 +1,7 @@
 Nodejs
 =============
 
-This role installs nodejs (v6.x and above).
+This role installs nodejs (v6.x and above) & yarn package manager.
 
 
 ## Example

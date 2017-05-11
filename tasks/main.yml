@@ -2,3 +2,7 @@
 
 - name: NodeJS Install
   include: "install-{{ ansible_os_family|lower }}.yml"
+
+- name: Yarn | Nodejs package manager install
+  include: yarn.yml
+  when: nodejs_yarn_install
