@@ -24,11 +24,15 @@
 
 - name: Update nodejs apt repos
   apt: update_cache=yes
-  when: repo|changed
+  when: repo is changed
 
 - name: Install nodejs
-  apt: name=nodejs state=present
+  apt:
+    name: nodejs
+    state: present
 
 - name: Install nodejs build tools
-  apt: name=build-essential state=present
+  apt:
+    name: build-essential
+    state: present
   when: nodejs_build_tools_install|default(true)

@@ -15,11 +15,15 @@
     owner: root
     group: root
     mode:  0644
-  
+
 - name: Install nodejs
-  yum: name=nodejs state=present
-  
+  yum:
+    name: nodejs
+    state: present
+
 - name: Install build tools for nodejs native addons
-  yum: name={{ item }} state=present
+  yum:
+    name: "{{ item }}"
+    state: present
   with_items: [ 'gcc-c++', 'make' ]
   when: nodejs_build_tools_install
