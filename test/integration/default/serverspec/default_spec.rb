@@ -27,7 +27,7 @@ end
 
 describe command("node -v") do
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should match %r(v6.*) }
+  its(:stdout) { should match %r(v8.14.0) }
 end
 
 describe command("npm -v") do

@@ -28,7 +28,8 @@
 
 - name: Install nodejs
   apt:
-    name: nodejs
+    name: nodejs={{ nodejs_package_version }}
+    update_cache: yes
     state: present
 
 - name: Install nodejs build tools
